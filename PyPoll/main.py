@@ -5,7 +5,8 @@ import csv
 csvpath = os.path.join("..", "PyPoll", "Resources" ,"election_data.csv")
 voterid=0
 cy=0
-Candidate=0
+candidate=0
+votes=0
 
 # Open the csv
 with open(csvpath) as csvfile:
@@ -24,12 +25,21 @@ with open(csvpath) as csvfile:
     for row in csvreader:
         voterid.append(int(row[0]))
         cy.append(int(row[1]))
-        Candidate.append(int(row[2]))
+        candidate.append(int(row[2]))
      
-    if ((Candidate)== "Khan"):
-        len[Candidate]+=1
-    print("Khan :" , ([Candidate]))
+        for i in range(1,len):
+            if ([candidate]== "Khan"):
+                len[candidate]+=1
+                print("Khan :" + int[candidate])
+            elif([candidate]=="Coorey"):
+                len[candidate]+=1
+                print("Coorey :" + int[candidate])
+            elif([candidate]=="Li"):
+                len[candidate]+=1
+                print("Li :" + int[candidate])
+            else:
+                len[candidate]+=1
+                print("O'Tooley :" + int[candidate])
 
-    #     candidate = row.split(",") [-1].strip()
-    #     len[candidate]+=1 
-    # print("candidate:", + str(len[candidate]))
+     
+
