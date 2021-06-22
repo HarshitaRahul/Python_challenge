@@ -1,46 +1,59 @@
-#Modules
-import os
 import csv
+import os
 
+# Files to load 
 csvpath = os.path.join("..", "PyBank", "Resources" ,"budget_data.csv")
-len=0
-total=0
-avg_chng=0,
-change=[]
 
-# Open the csv
+
+# Read the csv and convert it into a list of dictionaries
 with open(csvpath) as csvfile:
-    csvreader = csv.reader(csvfile,delimiter =',')
+    reader = csv.reader(csvfile)
 
-# loop through to check for number of months
-# to find the net total amount of profit/losses
+    # use of next to skip first title row in csv file
+    next(reader) 
+    revenue = []
+    date = []
+    change = []
 
-    nextline=next(csvreader)
-    for row in csvreader:
-            len+=1
-            total+=int(row[1])
-        
+    # in this loop I did sum of column 1 which is revenue in csv file and counted total months which is column 0 
+    for row in reader:
+
+        revenue.append(int(row[1]))
+        date.append(row[0])
+
     print("Financial Analysis")
-    print("-----------------------------")
-    print("Totalmonths :" + str(len))
-    print("Total :" + "$" + str(total))
-      
-     # Average of the changes in Profit/Losses
-    #the list used to store all the average changes
-    
-    # # for row in csvreader:
-    for x in range(1,int(len(total))):
-        change.append(total[x] - total[x-1])
-        avg_chng = round(sum(change)/len(change),2)
-        print("Average_change :" + "$" + str(avg_chng))   
-   
+    print("-----------------------------------")
+    print("Total Months:", len(date))
+    print("Total : $", sum(revenue))
 
 
+    #in this loop I did total of difference between all row of column "Revenue" and found total revnue change. Also found out max revenue change and min revenue change. 
+    for i in range(1,len(revenue)):
+        change.append(revenue[i] - revenue[i-1])   
+        avg_change = sum(change)/len(change)
+
+        max_change = max(change)
+
+        min_change = min(change)
+
+        max_change_date = str(date[change.index(max(change))])
+        min_change_date = str(date[change.index(min(change))])
 
 
-    
+    print("Avereage Change: $", round(avg_change))
+    print("Greatest Increase in Profits:", max_change_date,"($", max_change,")")
+    print("Greatest Decrease in Profits:", min_change_date,"($", min_change,")")
 
+output_path =os.path.join(".." , "Pybank" ,"Analysis" , "PyBank.txt")
 
+with open(output_path, 'w') as text_file:
+     #text_file = csv.writer(csvfile)
+     text_file.write ("Financial Analysis: \n")
+     text_file.write ("---------------------------------------\n")
+     text_file.write (f"Total Months: {str(len(date))}\n")
+     text_file.write (f"Average Change: ${str(avg_change)}\n")
+     text_file.write (f"Greatest Increase in Profits: {str(max_change_date)} (${str(max_change)})\n")
+     text_file.write (f"Greatest Decrease in Profits: {str(min_change_date)} (${str(min_change)})\n")
 
 
 
