@@ -5,6 +5,8 @@ import csv
 csvpath = os.path.join("..", "PyBank", "Resources" ,"budget_data.csv")
 len=0
 total=0
+avg_chng=0,
+change=[]
 
 # Open the csv
 with open(csvpath) as csvfile:
@@ -15,24 +17,23 @@ with open(csvpath) as csvfile:
 
     nextline=next(csvreader)
     for row in csvreader:
-        len+=1
-        total+=int(row[1])
+            len+=1
+            total+=int(row[1])
+        
     print("Financial Analysis")
     print("-----------------------------")
     print("Totalmonths :" + str(len))
     print("Total :" + "$" + str(total))
-
-    # Average of the changes in Profit/Losses
+      
+     # Average of the changes in Profit/Losses
     #the list used to store all the average changes
-    change=[]
-    for i in range(1,len(csvreader)):
-        #month[i]=month[i]-month[i-1]
-        change.append(row[i] - row[i-1])
+    
+    # # for row in csvreader:
+    for x in range(1,int(len(total))):
+        change.append(total[x] - total[x-1])
         avg_chng = round(sum(change)/len(change),2)
-    print(avg_chng)
-    # for month in avg_change:
-    #     print(month[i])
-
+        print("Average_change :" + "$" + str(avg_chng))   
+   
 
 
 
