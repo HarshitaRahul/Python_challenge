@@ -8,9 +8,10 @@ csvpath = os.path.join("..", "PyBank", "Resources" ,"budget_data.csv")
 # Read the csv and convert it into a list of dictionaries
 with open(csvpath) as csvfile:
     reader = csv.reader(csvfile)
+    
 
     # use of next to skip first title row in csv file
-    next(reader) 
+    header=next(reader) 
     revenue = []
     date = []
     change = []
