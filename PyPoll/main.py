@@ -62,5 +62,21 @@ with open(csvpath) as csvfile:
     print("-------------------------------")
     print(f"{winner_name} IS THE WINNER! ")
 
+output_path =os.path.join(".." , "PyPoll" ,"Analysis" , "PyPoll.txt")   
+
+with open(output_path, 'w') as text_file:
+    #text_file = csv.writer(csvfile)
+    text_file.write ("Election results \n")
+    text_file.write ("---------------------------------------\n")
+    text_file.write (f"Total number of votes cast : {str(total_votes)} \n")
+    text_file.write ("---------------------------------------\n")
+
+    for w in sorted(candidates,key=candidates.get,reverse= True):
+        text_file.write (f"{str(w)} : {str(candidates_pct [w])}% ({str(candidates[w])})\n")
+    text_file.write ("---------------------------------------\n")
+    text_file.write (f"{winner_name} IS THE WINNER! \n")
+    #  text_file.write (f"Greatest Increase in Profits: {str(max_change_date)} (${str(max_change)})\n")
+    #  text_file.write (f"Greatest Decrease in Profits: {str(mi
+
      
 
