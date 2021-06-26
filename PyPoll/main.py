@@ -62,6 +62,7 @@ with open(csvpath) as csvfile:
     print("-------------------------------")
     print(f"{winner_name} IS THE WINNER! ")
 
+#write file
 output_path =os.path.join(".." , "PyPoll" ,"Analysis" , "PyPoll.txt")   
 
 with open(output_path, 'w') as text_file:
@@ -75,8 +76,7 @@ with open(output_path, 'w') as text_file:
         text_file.write (f"{str(w)} : {str(candidates_pct [w])}% ({str(candidates[w])})\n")
     text_file.write ("---------------------------------------\n")
     text_file.write (f"{winner_name} IS THE WINNER! \n")
-    #  text_file.write (f"Greatest Increase in Profits: {str(max_change_date)} (${str(max_change)})\n")
-    #  text_file.write (f"Greatest Decrease in Profits: {str(mi
+
 
      
 

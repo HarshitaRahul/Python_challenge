@@ -45,6 +45,7 @@ with open(csvpath) as csvfile:
     print("Greatest Increase in Profits:", max_change_date,"($", max_change,")")
     print("Greatest Decrease in Profits:", min_change_date,"($", min_change,")")
 
+#write file
 output_path =os.path.join(".." , "Pybank" ,"Analysis" , "PyBank.txt")
 
 with open(output_path, 'w') as text_file:
